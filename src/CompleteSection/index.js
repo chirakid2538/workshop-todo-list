@@ -18,12 +18,6 @@ class CompleteSection extends Component {
             isShowTodoList: !this.state.isShowTodoList
         })
     }
-    
-    componentDidUpdate( prevProps, prevState ){
-        if( prevState.isShowTodoList !== (this.props.list.length > 0) ){
-            this.setState( { isShowTodoList : (this.props.list.length > 0) } );
-        } 
-    }
    
 
     render() {
