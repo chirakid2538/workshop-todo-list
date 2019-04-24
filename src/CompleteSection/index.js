@@ -9,7 +9,7 @@ class CompleteSection extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShowTodoList: true
+            isShowTodoList: props.list.length > 0
         }
     }
 
@@ -18,6 +18,13 @@ class CompleteSection extends Component {
             isShowTodoList: !this.state.isShowTodoList
         })
     }
+    
+    componentDidUpdate( prevProps, prevState ){
+        if( prevState.isShowTodoList !== (this.props.list.length > 0) ){
+            this.setState( { isShowTodoList : (this.props.list.length > 0) } );
+        } 
+    }
+   
 
     render() {
         const { list, onToggleComplete, onEditTodo, onDeleteTodo } = this.props;

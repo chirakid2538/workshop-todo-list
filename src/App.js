@@ -14,11 +14,11 @@ class App extends Component {
             list: [
                 {
                     title: 'Task 1',
-                    isCompleted: true
+                    isCompleted: false
                 },
                 {
                     title: 'Task 2',
-                    isCompleted: true
+                    isCompleted: false
                 },
                 {
                     title: 'Task 3',
