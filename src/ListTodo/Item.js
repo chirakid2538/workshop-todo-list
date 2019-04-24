@@ -20,7 +20,6 @@ class Item extends React.Component {
 
                     <Input
                         type="input"
-                        disabled={this.state.isDisabled}
                         value={this.props.todoName}
                         onChange={(event) => this.props.onEditTodo(this.props.index, event.target.value)}
                     />
