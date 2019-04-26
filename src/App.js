@@ -11,10 +11,11 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            lastId: 3,
             list: [
                 {
                     title: 'Task 1',
-                    isCompleted: false
+                    isCompleted: true
                 },
                 {
                     title: 'Task 2',
@@ -27,7 +28,7 @@ class App extends Component {
             ]
         }
     }
-    
+
     onEditTodo = (index, name) => {
         const listTodo = this.state.list;
         listTodo[index].title = name;
@@ -35,18 +36,21 @@ class App extends Component {
     }
 
     onDeleteTodo = (index) => {
-        const listTodo = this.state.list;
-        listTodo.splice(index, 1);
-        this.setState({ list: listTodo });
+        this.setState(({ list }) => ({
+            list: list.filter(function (item, key) {
+                return (key !== index);
+            })
+        }));
     }
 
     onCreateTodo = () => {
-        this.setState({
-            list: [...this.state.list, {
-                title: `Trask ${this.state.list.length + 1}`,
+        this.setState(({ list, lastId }) => ({
+            list: [...list, {
+                title: `Trask ${lastId + 1}`,
                 isCompleted: false
-            }]
-        });
+            }],
+            lastId: lastId + 1
+        }));
     }
 
     onToggleComplete = (index) => {

@@ -9,16 +9,14 @@ class CompleteSection extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShowTodoList: props.list.length > 0
+            isShowTodoList: true
         }
     }
 
     onToggleListItem = () => {
-        this.setState({
-            isShowTodoList: !this.state.isShowTodoList
-        })
+        this.setState(({ isShowTodoList }) => ({ isShowTodoList: !isShowTodoList }))
     }
-   
+
 
     render() {
         const { list, onToggleComplete, onEditTodo, onDeleteTodo } = this.props;
@@ -30,7 +28,7 @@ class CompleteSection extends Component {
                     </Button>
                     {list.length} Completed
                 </div>
-                {this.state.isShowTodoList && <ListTodo list={list} onToggleComplete={onToggleComplete} onEditTodo={onEditTodo} onDeleteTodo={onDeleteTodo}/>}
+                {this.state.isShowTodoList && <ListTodo list={list} onToggleComplete={onToggleComplete} onEditTodo={onEditTodo} onDeleteTodo={onDeleteTodo} />}
             </div>
         )
     }
