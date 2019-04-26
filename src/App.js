@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'reactstrap';
 
@@ -30,9 +31,12 @@ class App extends Component {
     }
 
     onEditTodo = (index, name) => {
-        const listTodo = this.state.list;
-        listTodo[index].title = name;
-        this.setState({ list: listTodo });
+        this.setState(({ list }) => {
+            const cloneTodo = _.cloneDeep(list);
+            const newList = cloneTodo.find((iten, key) => key === index);
+            newList.title = name;
+            return { list: cloneTodo };
+        });
     }
 
     onDeleteTodo = (index) => {
@@ -54,9 +58,12 @@ class App extends Component {
     }
 
     onToggleComplete = (index) => {
-        const list = this.state.list;
-        list[index].isCompleted = !this.state.list[index].isCompleted;
-        this.setState({ list });
+        this.setState(({ list }) => {
+            const cloneTodo = _.cloneDeep(list);
+            const newList = cloneTodo.find((iten, key) => key === index);
+            newList.isCompleted = !newList.isCompleted;
+            return { list: cloneTodo };
+        });
     }
 
     render() {
